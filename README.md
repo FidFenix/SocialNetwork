@@ -1,4 +1,4 @@
 # SocialNetwork
 ## Installation
-Use `npm install` for install dependences
-Use `nodemon` for run the localhost server
+1. Use `npm install` for install dependences.
+2. Use `nodemon` for run the localhost server.
