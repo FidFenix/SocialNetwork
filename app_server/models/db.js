@@ -2,6 +2,7 @@ var mongoose = require ('mongoose');
 var dbURI = 'mongodb://localhost/SocialNetwork';
 if(process.env.NODE_ENV==='production'){
   dbURI=process.env.MONGOLAB_URI;
+  console.log(dbURI);
 }
 mongoose.connect(dbURI);
 
