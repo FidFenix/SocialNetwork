@@ -18,10 +18,6 @@ html
           ul.nav.navbar-nav
             li
               a(href='/about/') About
-            li
-              a(href='/login/') Login
-            li
-              a(href='/formcuenta/') Sign up
     .container
       block content
     
