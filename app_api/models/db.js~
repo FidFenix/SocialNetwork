@@ -22,19 +22,19 @@ var gracefulShutdown = function(msg,callback){
     callback();
   });
 };
-//For del nodemon restart
+//For nodemon restart
 process.once('SIGUSR2',function(){
   gracefulShutdown('nodemon restart',function(){
     process.kill(process.pid,'SIGUSR2');  
   });    
 });
-//For del app termination
+//For app termination
 process.on('SIGINT',function(){
   gracefulShutdown('app termination',function(){
     process.exit(0);  
   });
 });
-//For del Heroku app termination
+//For Heroku app termination
 process.on('SIGTERM',function(){
   gracefulShutdown('Heroku app shutdown0',function(){
     process.exit(0);

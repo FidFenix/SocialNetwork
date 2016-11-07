@@ -1,6 +1,7 @@
 extends layout
 
 block content
+  h1= title
   .container-fluid
     .row
       .col-md-12
