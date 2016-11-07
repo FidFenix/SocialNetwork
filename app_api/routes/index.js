@@ -1,11 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var ctrlLocations = require ('../controllers/locations');
+var ctrlUsers = require ('../controllers/userprofile');
 
 //locations
-//router.get('/locations',ctrlLocations.locationsListByDistance);
-router.get('/locations/:locationid',ctrlLocations.locationsCreate);
-/*router.get('/locations/:locationid',ctrlLocations.locationsReadOne);
-router.put('/locations/:locationsid',ctrlLocations.locationsUpdateOne);
-router.delete('/locations/:locationid',ctrlLocations.locationsDeleteOne);*/
+router.get('/users',ctrlUsers.userListByDistance);
+router.post('/users',ctrlUsers.userProfileCreate);
+router.get('/users/:userid',ctrlUser.userProfileFullReadOne);
+router.put('/users/:userid',ctrlUser.userProfileUpdateOne);
+router.delete('/users/:userid',ctrlUser.userProfileDeleteOne);
+router.get('/users/:userid',ctrlUser.userProfileFullReadOne);
+
 module.exports=router;
