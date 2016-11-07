@@ -152,7 +152,7 @@ module.exports.userProfileCreate = function(req, res) {
 };
 
 /* PUT /api/locations/:locationid */
-module.exports.locationsUpdateOne = function(req, res) {
+module.exports.userProfileUpdateOne = function(req, res) {
   if (!req.params.userid) {
     sendJSONresponse(res, 404, {
       "message": "Not found, userid is required"
@@ -164,7 +164,7 @@ module.exports.locationsUpdateOne = function(req, res) {
     .select('-friends -photos ')
     .exec(
       function(err, user) {
-        if (!location) {
+        if (!user) {
           sendJSONresponse(res, 404, {
             "message": "userid not found"
           });
@@ -181,11 +181,11 @@ module.exports.locationsUpdateOne = function(req, res) {
         user.email=req.body.email;
         user.address = req.body.address;
         user.coords = [parseFloat(req.body.lng), parseFloat(req.body.lat)];
-        user.save(function(err, location) {
+        user.save(function(err, user) {
           if (err) {
             sendJSONresponse(res, 404, err);
           } else {
-            sendJSONresponse(res, 200, location);
+            sendJSONresponse(res, 200,user);
           }
         });
       }
@@ -193,25 +193,25 @@ module.exports.locationsUpdateOne = function(req, res) {
 };
 
 /* DELETE /api/locations/:locationid */
-module.exports.locationsDeleteOne = function(req, res) {
+module.exports.userProfileDeleteOne = function(req, res) {
   var userid = req.params.userid;
   if (userid) {
     Loc
       .findByIdAndRemove(userid)
       .exec(
-        function(err, location) {
+        function(err, user) {
           if (err) {
             console.log(err);
             sendJSONresponse(res, 404, err);
             return;
           }
-          console.log("Location id " + locationid + " deleted");
+          console.log("User id " + locationid + " deleted");
           sendJSONresponse(res, 204, null);
         }
     );
   } else {
     sendJSONresponse(res, 404, {
-      "message": "No locationid"
+      "message": "No userid"
     });
   }
 };
