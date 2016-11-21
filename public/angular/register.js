@@ -54,11 +54,10 @@ var registerCtrl = function ($scope, registerUser, geolocation) {
     };
     registerUser.register(lat, lng,postData)
       .success(function(data) {
-        alert("luego del post");
         $scope.message = "User Create";
+        alert("USUARIO CREADO");
       })
       .error(function (e) {
-        alert("ERROR"+e);
         $scope.message = "Sorry, something's gone wrong, please try again later";
       });
   };
@@ -76,20 +75,12 @@ var registerCtrl = function ($scope, registerUser, geolocation) {
   };
   
   $scope.registerSubmit = function(){
-    alert("entro");
     geolocation.getPosition($scope.getData,$scope.showError,$scope.noGeo);
   };
 };
 
 var registerUser = function ($http) {
   var register = function (lat, lng, postData) {
-    alert("antes de hacer post");
-    alert("postDATA:" + JSON.stringify(postData));
-    /*return $http({
-      method:'POST',
-      url: '/api/users/create',
-      body: {text:'text'}
-    });*/
     return $http.post('/api/users/create',JSON.stringify(postData));
   };
   return {
