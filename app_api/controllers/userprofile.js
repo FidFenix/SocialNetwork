@@ -89,6 +89,12 @@ module.exports.userProfileFullReadOne = function(req, res) {
           sendJSONresponse(res, 404, err);
           return;
         }
+        else if(user.password != req.params.userpassword){
+          sendJSONresponse(res,404,{
+            "message": "wrong password"  
+          });
+          return;
+        }
         console.log(user);
         sendJSONresponse(res, 200, user);
       });
@@ -105,7 +111,7 @@ module.exports.userProfilePartialReadOne = function(req, res) {
   if (req.params && req.params.userid) {
     Usr
       .findById(req.params.userid)
-      .select("-userStatus -friends")
+      .select("-friends -password")
       .exec(function(err, user) {
         if (!user) {
           sendJSONresponse(res, 404, {
@@ -130,11 +136,15 @@ module.exports.userProfilePartialReadOne = function(req, res) {
 /* POST a new location */
 /* /api/locations */
 module.exports.userProfileCreate = function(req, res) {
-  console.log(req.body);
+  //console.log("AQUI EL BODY :\n"+req.postData);
+  //console.log("AQUI EL BODY :\n"+JSON.stringify(req.body));
+  //console.log("AQUI EL BODY2 :\n"+req.body.postData.name);
+  //console.log("AQUI EL BODY3 :\n"+req.body.postData.firstname);
   Usr.create({
     name: req.body.name,
     firstName: req.body.firstname,
     lastName: req.body.lastname,
+    password: req.body.password,
     email: req.body.email,
     birthdate:req.body.birthdate,
     url:req.body.url,
@@ -176,10 +186,11 @@ module.exports.userProfileUpdateOne = function(req, res) {
         user.name = req.body.name;
         user.firstName =req.body.firstname;
         user.lastName=req.body.lastname;
-        user.url=req.body.url;
-        user.birthdate=req.body.birthdate;
+        user.password=req.body.password;
         user.email=req.body.email;
+        user.birthdate=req.body.birthdate;
         user.address = req.body.address;
+        user.url=req.body.url;
         user.coords = [parseFloat(req.body.lng), parseFloat(req.body.lat)];
         user.save(function(err, user) {
           if (err) {

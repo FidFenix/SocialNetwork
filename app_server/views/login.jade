@@ -1,35 +1,74 @@
-extends layout
+doctype html
+html
+  head
+    title Social Network
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
+    script(type='application/x-javascript').
+      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    link(href='//fonts.googleapis.com/css?family=Poiret+One', rel='stylesheet', type='text/css')
+    link(href='//fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900', rel='stylesheet', type='text/css')
+    link(href='/css/animate-custom.css', rel='stylesheet', type='text/css', media='all')
+    link(href='/css/style.css', rel='stylesheet', type='text/css', media='all')
 
-block content
-  .container-fluid
-    .row
-      .col-md-8
-        .page-header
-          h1
-            | PhotoBook 
-            small Photo Social Network
-        form.form-horizontal(role='form')
-          .form-group
-            label.col-sm-2.control-label(for='inputEmail3')
-              | Email
-            .col-sm-10
-              input#inputEmail3.form-control(type='email')
-          .form-group
-            label.col-sm-2.control-label(for='inputPassword3')
-              | Password
-            .col-sm-10
-              input#inputPassword3.form-control(type='password')
-          .form-group
-            .col-sm-offset-2.col-sm-10
-              .checkbox
-                label
-                  input(type='checkbox')
-                  |  Remember me
-          .form-group
-            .col-sm-offset-2.col-sm-10
-              button.btn.btn-default(type='submit')
-                | Sign in
-      br
-      br
-      .col-md-4
-        img.img-circle.center-block(alt='Bootstrap Image Preview', src='http://lorempixel.com/140/140/', width='300', height='300')
+    script(src='/angular/angular.min.js')
+    script(src='/angular/register.js')
+    script(src='/javascripts/jquery-1.11.1.min.js')
+  body(ng-app='registerApp')
+    .header
+      h1 Profile Login Form
+    .content
+      section
+        #container_demo
+          a#toregister.hiddenanchor
+          a#tologin.hiddenanchor
+          #wrapper
+            #login.animate.form
+              .content-img
+                img.w3l-img(src='/images/profile.png', alt='img')
+              form(action='#', autocomplete='on', method='post')
+                h2 Login
+                p
+                  label.uname(for='username', data-icon='u')  Your email or username 
+                  input#username(name='username', required='required', type='text', placeholder='myusername or mymail@mail.com')
+                p
+                  label.youpasswd(for='password', data-icon='p')  Your password 
+                  input#password(name='password', required='required', type='password', placeholder='eg:password123!@#$%')
+                p.keeplogin
+                  input#loginkeeping(type='checkbox', name='loginkeeping', value='loginkeeping')
+                  label(for='loginkeeping') Keep me logged in
+                p.login.button
+                  input(type='submit', value='Login')
+                p.change_link
+                  | Not a member yet ?
+                  a.to_register(href='#toregister') Join us
+            #register.animate.form(ng-controller='registerCtrl')
+              .content-img
+                img.w3l-img(src='/images/profile.png', alt='img')
+              form( autocomplete='on')
+                h2  Sign up 
+                p
+                  label.name(for='name', data-icon='u') Your Name
+                  input#name(name='name', required='required', type='text', placeholder='mysuperusername690',ng-model='register.name')
+                p
+                  label.firstname(for='firstname', data-icon='u') Your FirstName
+                  input#firstname(name='firstname', required='required', type='text', placeholder='mysuperusername690',ng-model='register.firstname')
+                p
+                  label.lastname(for='lastname', data-icon='u') Your LastName
+                  input#lastname(name='lastname', required='required', type='text', placeholder='mysuperusername690',ng-model='register.lastname')
+                p
+                  label.youmail(for='emailsignup', data-icon='e')  Your email
+                  input#emailsignup(name='emailsignup', required='required', type='email', placeholder='mysupermail@mail.com',ng-model='register.email')
+                p
+                  label.youpasswd(for='passwordsignup', data-icon='p') Your password 
+                  input#passwordsignup(name='passwordsignup', required='required', type='password', placeholder='eg:password123!@#$%',ng-model='register.password')
+                p
+                  label.youpasswd(for='passwordsignup_confirm', data-icon='p') Please confirm your password 
+                  input#passwordsignup_confirm(name='passwordsignup_confirm', required='required', type='password', placeholder='eg:password123!@#$%')
+                p.signin.button
+                  input(type='submit', value='Sign up',ng-click='registerSubmit()')
+                p.change_link
+                  | Already a member ?
+                  a.to_register(href='#tologin') Log in
+    .footer
+

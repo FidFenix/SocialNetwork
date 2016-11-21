@@ -40,5 +40,6 @@ process.on('SIGTERM',function(){
     process.exit(0);
   })    ;
 });
+require('./socialnetwork');
 require('./locations');
 require('./users');
