@@ -9,7 +9,7 @@ var ctrlForm = require ('../controllers/formcuenta');
 /*login page*/
 router.get('/login',ctrlLogin.login);
 /* Location pages. */
-router.get('/',ctrlLocations.homeList);
+router.get('/',ctrlOthers.angularApp);
 router.get('/location',ctrlLocations.locationInfo);
 router.get('/location/review/new',ctrlLocations.addReview);
 

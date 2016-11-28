@@ -1,9 +1,20 @@
 var express = require('express');
 var router = express.Router();
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: process.env.JWT_SECRET,
+  userProperty: 'payload'
+})
 var ctrlUsers = require ('../controllers/userprofile');
 var ctrlPhotos = require('../controllers/photos');
 var ctrlPublications = require('../controllers/publications');
 var ctrlComments = require('../controllers/publications');
+var ctrlAuth = require('../controllers/authentication')
+
+//authentication
+router.post('/register',ctrlAuth.register);
+router.post('/login',ctrlAuth.login);
+
 //userprofile
 router.get('/users',ctrlUsers.userListByDistance);
 router.post('/users/create',ctrlUsers.userProfileCreate);

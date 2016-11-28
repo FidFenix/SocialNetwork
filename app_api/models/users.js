@@ -1,49 +1,37 @@
 var mongoose = require ('mongoose');
-var photoSchema = new mongoose.Schema({
-    data :{type:Buffer},
-    uploadDate: {type:Date,"default":Date.now},
-    tags:[String] 
+var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
+var userSchema = new mongoose.Schema({
+  email:{
+    type:String,
+    unique:true,
+    required:true
+  },
+  name:{
+    type:String,
+    required:true
+  },
+  hash:String,
+  salt:String
 });
-var likeTypeSchema = new mongoose.Schema({
-    likeTypeIndex : Number,
-    likeTypeName : String
-});
-var likeSchema= new mongoose.Schema({
-    likeUser : {type:mongoose.Schema.Types.ObjectId,required:true},
-    likeType : likeTypeSchema
-});
-var commentSchema = new mongoose.Schema({
-    commentDate : {type:Date,"default":Date.now},
-    commentText : {type:String,required:true},
-    commentLikes : [likeSchema],
-    
-})
-var publicationSchema= new mongoose.Schema({
-    publicationDate :{type:Date,"default":Date.now},
-    publicationText : String,
-    publicationPhoto:[photoSchema],
-    publicationComments:[commentSchema],
-
-});
-var userSchema= new mongoose.Schema({
-    userFirstName :{type:String,required:true},
-    userLastName:{type:String,required:true},
-    adress:String,
-    phoneNumber:Number,
-    email:{type:String,required:true},
-    userPgotos: [photoSchema],
-    userBirthdate:Date,
-    userContacts:[mongoose.Schema.Types.ObjectId],
-    userPerfil:[]
-  
-});
-
-var locationSchema = new mongoose.Schema({
-    name:{type:String,required:true},
-    adress:String,
-    rating:{type: Number,"default": 0,min: 0,max: 5},
-    facilities:[String],
-    coord:{type:[Number],index:'2dsphere'}
-});
+userSchema.methods.setPassword= function( password ){
+  this.salt = crypto.randomBytes(16).toString('hex');
+  this.hash=crypto.pbkdf2Sync(password,this.salt,1000,64).toString('hex');
+};
+userSchema.methods.validPassword= function(password){
+  var hash = crypto.pbkdf2Sync(password,this.salt,1000,64).toString('hex');
+  return this.hash==hash;
+};
+userSchema.methods.generateJwt = function(){
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7 );
+  console.log("HOLAAAA"); 
+  return jwt.sign({
+    _id : this._id,
+    email: this.email,
+    name: this.name,
+    exp: parseInt(expiry.getTime()/1000)
+  },process.env.JWT_SECRET);
+};
 mongoose.model('User',userSchema);
 
