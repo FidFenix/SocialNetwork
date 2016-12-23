@@ -1,4 +1,3 @@
 # SocialNetwork
-## Installation
-1. Use `npm install` for install dependences.
-2. Use `nodemon` for run the localhost server.
+## A web page dedicaded to use MEAN as a main platform
+We have developt some versions of our social network
