@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Usr = mongoose.model('UserProfile');
+var Usr = mongoose.model('User');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
@@ -74,34 +74,38 @@ var buildUserList = function(req, res, results, stats) {
 
 /* GET a location by the id */
 module.exports.userProfileFullReadOne = function(req, res) {
-  console.log('Finding user details', req.params);
-  if (req.params && req.params.userid) {
+  console.log('Finding user details', req.payload.email);
+  if(req.payload.email){
     Usr
-      .findById(req.params.userid)
-      .exec(function(err, user) {
-        if (!user) {
+      .findOne({email:req.payload.email})
+      .select("-salt")
+      .exec(function(err,user){
+        if(!user){
           sendJSONresponse(res, 404, {
             "message": "userid not found"
           });
           return;
-        } else if (err) {
+        }else if (err) {
           console.log(err);
           sendJSONresponse(res, 404, err);
           return;
-        }
-        else if(user.password != req.params.userpassword){
-          sendJSONresponse(res,404,{
-            "message": "wrong password"  
+        }else if(user._id!=req.payload._id){
+          console.log("error en token");
+          sendJSONresponse(res, 404, {
+            "message": "invalid credentials"
           });
           return;
         }
-        console.log(user);
-        sendJSONresponse(res, 200, user);
+        else{
+          console.log(user);
+          sendJSONresponse(res, 200, user);
+        }
       });
-  } else {
+  }
+  else{
     console.log('No userid specified');
     sendJSONresponse(res, 404, {
-      "message": "No userid in request"
+    "message": "No userid in request"
     });
   }
 };
@@ -111,7 +115,7 @@ module.exports.userProfilePartialReadOne = function(req, res) {
   if (req.params && req.params.userid) {
     Usr
       .findById(req.params.userid)
-      .select("")
+      .select("-hash -salt -friends")
       .exec(function(err, user) {
         if (!user) {
           sendJSONresponse(res, 404, {
@@ -135,11 +139,7 @@ module.exports.userProfilePartialReadOne = function(req, res) {
 };
 /* POST a new location */
 /* /api/locations */
-module.exports.userProfileCreate = function(req, res) {
-  //console.log("AQUI EL BODY :\n"+req.postData);
-  //console.log("AQUI EL BODY :\n"+JSON.stringify(req.body));
-  //console.log("AQUI EL BODY2 :\n"+req.body.postData.name);
-  //console.log("AQUI EL BODY3 :\n"+req.body.postData.firstname);
+/*module.exports.userProfileCreate = function(req, res) {
   Usr.create({
     name: req.body.name,
     firstName: req.body.firstname,
@@ -159,7 +159,7 @@ module.exports.userProfileCreate = function(req, res) {
       sendJSONresponse(res, 201, user);
     }
   });
-};
+};*/
 
 /* PUT /api/locations/:locationid */
 module.exports.userProfileUpdateOne = function(req, res) {

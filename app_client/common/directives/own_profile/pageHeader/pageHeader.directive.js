@@ -6,7 +6,11 @@
   function pageHeader(){
     return {
       restrict : 'EA',
-      templateUrl : '/common/directives/own_profile/pageHeader/pageHeader.template.html'
+      scope: {
+        content : '=content'
+      },
+      templateUrl : '/common/directives/own_profile/pageHeader/pageHeader.template.html',
+      controller: 'pageHeaderCtrl'
     };
   }
 })();

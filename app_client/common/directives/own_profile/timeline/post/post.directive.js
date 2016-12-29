@@ -6,7 +6,11 @@
   function post(){
     return {
       restrict : 'EA',
-      templateUrl : '/common/directives/own_profile/timeline/post/post.template.html'
+      scope: {
+        content : '=content'
+      },
+      templateUrl : '/common/directives/own_profile/timeline/post/post.template.html',
+      controller : 'postCtrl'
     };
   }
 })();

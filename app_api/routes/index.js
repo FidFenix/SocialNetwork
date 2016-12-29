@@ -16,8 +16,8 @@ router.post('/register',ctrlAuth.register);
 router.post('/login',ctrlAuth.login);
 //userprofile
 router.get('/users',ctrlUsers.userListByDistance);
-router.post('/users/create',ctrlUsers.userProfileCreate);
-router.post('/users/full/:userid',ctrlUsers.userProfileFullReadOne);
+//router.post('/users/create',ctrlUsers.userProfileCreate);
+router.post('/users/full',ctrlUsers.userProfileFullReadOne);
 router.get('/users/partial/:userid',ctrlUsers.userProfilePartialReadOne);
 router.put('/users/update/:userid',ctrlUsers.userProfileUpdateOne);
 router.delete('/users/delete/:userid',ctrlUsers.userProfileDeleteOne);

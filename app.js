@@ -25,6 +25,7 @@ var appClientFiles = [
   'app_client/common/services/geoLocation.service.js',
   'app_client/common/services/registerUser.service.js',
   'app_client/common/services/authentication.service.js',
+  'app_client/common/services/userData.service.js',
   'app_client/common/filters/formatDistance.filter.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
   'app_client/common/directives/modal/modal.directive.js',
@@ -37,7 +38,9 @@ var appClientFiles = [
   'app_client/common/directives/own_profile/timeline/timeline.directive.js',
   'app_client/common/directives/own_profile/timeline/post/post.directive.js',
   'app_client/common/directives/own_profile/timeline/postState/postState.directive.js',
-  'app_client/index/index.controller.js'
+  'app_client/index/index.controller.js',
+  'app_client/common/directives/own_profile/pageHeader/pageHeader.controller.js',
+  'app_client/common/directives/own_profile/timeline/post/post.controller.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles,{compress:false});
 fs.writeFile('public/angular/socialnetwork.min.js',uglified.code,function(err){

@@ -6,6 +6,9 @@
   function about(){
     return {
       restrict : 'EA',
+      scope: {
+        content : '=content'
+      },
       templateUrl : '/common/directives/own_profile/widgets/about/about.template.html'
     };
   }

@@ -15,9 +15,17 @@ var commentSchema = new mongoose.Schema({
     type:String,
     required:true
   },
+  userName:{
+    type:String,
+    required:true
+  },
   text:{
     type:String,
     required:true
+  },
+  date : {
+    type:Date,
+    "default":Date.now
   },
   likes:[likeSchema]
 });
@@ -70,13 +78,13 @@ var publicationSchema = new mongoose.Schema({
     type:Date,
     "default":Date.now
   },
-  title:String,
   text:{
     type:String
   },
   publicationPhoto:{
     type:String
   },
+  likes:[likeSchema],
   comments:[commentSchema]
 });
 var userSchema = new mongoose.Schema({
@@ -89,14 +97,14 @@ var userSchema = new mongoose.Schema({
     type:String,
     required:true
   },
-  firstName:{
+  /*firstName:{
     type:String,
     required:true
   },
   lastName:{
     type:String,
     required:true
-  },
+  },*/
   hash:String,
   salt:String,
   photos:[photoSchema],
@@ -104,6 +112,7 @@ var userSchema = new mongoose.Schema({
   address:String,
   job:String,
   gender:String,
+  coverPage:String,
   profilePhoto:String,
   friends:[friendSchema],
   userStatus:{
