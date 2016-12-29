@@ -30,6 +30,16 @@ var appClientFiles = [
   'app_client/common/services/authentication.service.js',
   'app_client/common/filters/formatDistance.filter.js',
   'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
+  'app_client/common/directives/modal/modal.directive.js',
+  'app_client/common/directives/navigation/navigation.directive.js',
+  'app_client/common/directives/chat/chat.directive.js',
+  'app_client/common/directives/own_profile/pageHeader/pageHeader.directive.js',
+  'app_client/common/directives/own_profile/widgets/about/about.directive.js',
+  'app_client/common/directives/own_profile/widgets/friends/friends.directive.js',
+  'app_client/common/directives/own_profile/widgets/group/group.directive.js',
+  'app_client/common/directives/own_profile/timeline/timeline.directive.js',
+  'app_client/common/directives/own_profile/timeline/post/post.directive.js',
+  'app_client/common/directives/own_profile/timeline/postState/postState.directive.js',
   'app_client/index/index.controller.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles,{compress:false});

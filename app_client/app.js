@@ -8,6 +8,11 @@
         //controller: 'registerCtrl',
         //controllerAs: 'vm'
       })
+      .when('/profile',{
+        templateUrl:'/profiles/own_profile/profile.view.html'
+        //controller: 'registerCtrl',
+        //controllerAs: 'vm'
+      })
       .when('/index',{
         templateUrl:'index/index.view.html',
         controller: 'indexCtrl',

@@ -3,7 +3,7 @@
     .module('socialnetworkApp')
     .directive('navigation',navigation);
 
-  function footerGeneric(){
+  function navigation(){
     return {
       restrict : 'EA',
       templateUrl : '/common/directives/navigation/navigation.template.html'
