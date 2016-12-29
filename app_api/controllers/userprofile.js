@@ -111,7 +111,7 @@ module.exports.userProfilePartialReadOne = function(req, res) {
   if (req.params && req.params.userid) {
     Usr
       .findById(req.params.userid)
-      .select("-friends -password")
+      .select("")
       .exec(function(err, user) {
         if (!user) {
           sendJSONresponse(res, 404, {

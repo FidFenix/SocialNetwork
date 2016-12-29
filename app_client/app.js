@@ -8,6 +8,12 @@
         //controller: 'registerCtrl',
         //controllerAs: 'vm'
       })
+      .when('/index',{
+        templateUrl:'index/index.view.html',
+        controller: 'indexCtrl',
+        controllerAs: 'vm'
+        
+      })
       .otherwise({redirectTo: '/'});
     $locationProvider.html5Mode(true);
   }

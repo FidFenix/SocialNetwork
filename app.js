@@ -29,7 +29,8 @@ var appClientFiles = [
   'app_client/common/services/registerUser.service.js',
   'app_client/common/services/authentication.service.js',
   'app_client/common/filters/formatDistance.filter.js',
-  'app_client/common/directives/footerGeneric/footerGeneric.directive.js'
+  'app_client/common/directives/footerGeneric/footerGeneric.directive.js',
+  'app_client/index/index.controller.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles,{compress:false});
 fs.writeFile('public/angular/socialnetwork.min.js',uglified.code,function(err){

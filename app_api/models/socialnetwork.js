@@ -21,10 +21,10 @@ var chatSchema = new mongoose.Schema({
 var friendSchema = new mongoose.Schema({
   userId:{type:String,required:true},
   chat : chatSchema,
-  permisions:Number,
+  permisions:Number
 });
 var photoSchema = new mongoose.Schema({
-  data : {type:Buffer},
+  data : {type:String},
   uploadDate: {type:Date,"default":Date.now},
   tags:[String],
   text:String,
@@ -36,7 +36,7 @@ var publicationSchema = new mongoose.Schema({
   date:{type:Date,"default":Date.now},
   title:String,
   text:String,
-  publicationPhoto:{type:Buffer},
+  publicationPhoto:{type:String},
   comments:[commentSchema]
 });
 
