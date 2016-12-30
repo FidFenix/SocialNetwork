@@ -1,3 +1,3 @@
 # SocialNetwork
 ## This is our Android app for Social Network
-We develop also an android application
+We also develop an android application
