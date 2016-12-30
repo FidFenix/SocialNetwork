@@ -1,14 +1,14 @@
-<div ng-repeat='post in content' class="box box-widget">
+<div ng-repeat='post in publications' class="box box-widget">
     <div class="box-header with-border">
         <div class="user-block">
-            <img class="img-circle" src="{{userImage(currentUser.id)}}" alt="User Image">
+            <img class="img-circle" src="{{photo}}" alt="User Image">
             <span class="username"><a href="#">{{currentUser.name}}</a></span>
             <span class="description">Compartido publicamente - {{post.date}}</span>
         </div>
     </div>
 
     <div class="box-body" style="display: block;">
-        <img class="img-responsive pad show-in-modal" src="img/Photos/3.jpg" alt="Photo">
+        <img class="img-responsive pad show-in-modal" src="{{post.photo}}" alt="Photo">
         <p>{{post.text}}</p>
         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-share"></i> Share</button>
         <button type="button" class="btn btn-default btn-xs"><i class="fa fa-thumbs-o-up"></i> Like</button>

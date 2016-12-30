@@ -30,8 +30,9 @@ router.post('/users/photos',ctrlPhotos.photosCreate);
 router.get('/users/photos/:photoid',ctrlPhotos.photoReadOne);
 router.put('/users/photos/:photoid',ctrlPhotos.photoUpdateOne);
 router.delete('/users/photos/:photoid',ctrlPhotos.photoDeleteOne);
+
 //publication
-router.post('/users/:userid/publications',ctrlPublications.publicationCreate);
+router.post('/users/publication',auth,ctrlUsers.userCreatePublication);
 router.get('/users/:userid/publications/:publicationid',ctrlPublications.publicationReadOne);
 router.put('/users/:userid/publications/:publicationid',ctrlPublications.publicationUpdateOne);
 router.delete('/users/:userid/publications/:publicationid',ctrlPublications.publicationDeleteOne);

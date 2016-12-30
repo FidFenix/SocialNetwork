@@ -64,7 +64,6 @@ var photoSchema = new mongoose.Schema({
     type:Date,
     "default":Date.now
   },
-  tags:[String],
   text:String,
   coords: {
     type:[Number],

@@ -33,12 +33,20 @@
           } 
         });
     };
+    var createPublication = function(data){
+        return $http.post('/api/users/publication',data,{
+          headers: {
+                Authorization: 'Bearer '+ authentication.getToken()
+          } 
+        });
+    };
     return {
       getUserData : getUserData,
       getUserDataById : getUserDataById,
       updateUserData : updateUserData,
       getUsers : getUsers,
-      addFriend : addFriend
+      addFriend : addFriend,
+      createPublication: createPublication
 
     };
   }

@@ -47,7 +47,8 @@ var appClientFiles = [
   'app_client/friends/friends.controller.js',
   'app_client/config/editprofile/editprofile.controller.js',
   'app_client/common/directives/own_profile/pageHeader/pageHeader.controller.js',
-  'app_client/common/directives/own_profile/timeline/post/post.controller.js'
+  'app_client/common/directives/own_profile/timeline/post/post.controller.js',
+  'app_client/common/directives/own_profile/timeline/postState/postState.controller.js'
 ];
 var uglified = uglifyJs.minify(appClientFiles,{compress:false});
 fs.writeFile('public/angular/socialnetwork.min.js',uglified.code,function(err){

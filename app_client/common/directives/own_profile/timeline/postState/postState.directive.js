@@ -6,7 +6,8 @@
   function postState(){
     return {
       restrict : 'EA',
-      templateUrl : '/common/directives/own_profile/timeline/postState/postState.template.html'
+      templateUrl : '/common/directives/own_profile/timeline/postState/postState.template.html',
+      controller: 'postStateCtrl'
     };
   }
 })();

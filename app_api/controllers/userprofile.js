@@ -333,3 +333,54 @@ module.exports.userAddFriend = function(req, res) {
     });
   }
 };
+
+module.exports.userCreatePublication = function(req, res) {
+  console.log("PUBLICACIONNNNNNNNN");
+  console.log('Finding user details', req.payload.email);
+  if(req.payload.email){
+    Usr
+      .findOne({email:req.payload.email})
+      //.select("-salt")
+      .exec(function(err,user){
+        if(!user){
+          sendJSONresponse(res, 404, {
+            "message": "userid not found"
+          });
+          return;
+        }else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }else if(user._id!=req.payload._id){
+          console.log("error en token");
+          sendJSONresponse(res, 404, {
+            "message": "invalid credentials"
+          });
+          return;
+        }
+        else{
+          user.publications.push({
+            text:req.body.text,
+            publicationPhoto:req.body.photo
+          });
+          if(req.body.photo){
+            user.photos.push({
+              data:req.body.photo,
+              text:req.body.text
+            });
+          }
+          user.save(function(err,user2){
+            console.log(user2);
+            sendJSONresponse(res, 200, user2);
+          });
+        
+        }
+      });
+  }
+  else{
+    console.log('No userid specified');
+    sendJSONresponse(res, 404, {
+    "message": "No userid in request"
+    });
+  }
+};
