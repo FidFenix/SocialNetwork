@@ -43,7 +43,19 @@
                         <div class="col-md-9">
                             <div class="user-info-right">
                                 <div class="basic-info">
-                                    <h3><i class="fa fa-square"></i> Basic Information</h3>                              
+                                    <h3><i class="fa fa-square"></i> Basic Information</h3>
+                                    <p class="data-row">
+                                        <span class="data-value">Name</span>
+                                        <input class="data-name" ng-model='vm.user.name'>
+                                    </p>
+                                    <p class="data-row">
+                                        <span class="data-value">Email</span>
+                                        <input class="data-name" ng-model='vm.user.email'>
+                                    </p>
+                                    <p class="data-row">
+                                        <span class="data-value">address</span>
+                                        <input class="data-name" ng-model='vm.user.address'>
+                                    </p>
                                     <p class="data-row">
                                         <span class="data-value">Job</span>
                                         <input class="data-name" ng-model='vm.user.job'>

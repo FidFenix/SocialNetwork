@@ -18,20 +18,6 @@
                 };
                 vm.photos=user.photos;
                 vm.friends = user.friends;
-                for(var i=0;vm.friends && i<vm.friends.length;i++){
-                    userData.getUserDataById(vm.friends[i].userId)
-                        .success(function (data) {
-                            vm.friendPhotos.push({
-                                id: data.id,
-                                profilePhoto: data.profilePhoto,
-                                name:data.name,
-                                job:data.job
-                            });
-                        })
-                        .error(function (err) {
-                            alert("Error de fotos amigos profile");
-                        });
-                }
                 return false;
             })
             .error(function(err){
