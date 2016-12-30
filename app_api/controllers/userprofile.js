@@ -74,11 +74,12 @@ var buildUserList = function(req, res, results, stats) {
 
 /* GET a location by the id */
 module.exports.userProfileFullReadOne = function(req, res) {
+  console.log("entrooooo"+req.payload.email);
   console.log('Finding user details', req.payload.email);
   if(req.payload.email){
     Usr
       .findOne({email:req.payload.email})
-      .select("-salt")
+      //.select("-salt")
       .exec(function(err,user){
         if(!user){
           sendJSONresponse(res, 404, {
@@ -163,44 +164,57 @@ module.exports.userProfilePartialReadOne = function(req, res) {
 
 /* PUT /api/locations/:locationid */
 module.exports.userProfileUpdateOne = function(req, res) {
-  if (!req.params.userid) {
-    sendJSONresponse(res, 404, {
-      "message": "Not found, userid is required"
-    });
-    return;
-  }
-  Loc
-    .findById(req.params.userid)
-    .select('-friends -photos ')
-    .exec(
-      function(err, user) {
-        if (!user) {
+  console.log("ENTRO a UPDATEONE");
+   if(req.payload.email){
+    Usr
+      .findOne({email:req.payload.email})
+      .exec(function(err,user){
+        if(!user){
           sendJSONresponse(res, 404, {
-            "message": "userid not found"
+            "message": "user not found"
           });
           return;
-        } else if (err) {
-          sendJSONresponse(res, 400, err);
+        }else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }else if(user._id!=req.payload._id){
+          console.log("error en token");
+          sendJSONresponse(res, 404, {
+            "message": "invalid credentials"
+          });
           return;
         }
-        user.name = req.body.name;
-        user.firstName =req.body.firstname;
-        user.lastName=req.body.lastname;
-        user.password=req.body.password;
-        user.email=req.body.email;
-        user.birthdate=req.body.birthdate;
-        user.address = req.body.address;
-        user.url=req.body.url;
-        user.coords = [parseFloat(req.body.lng), parseFloat(req.body.lat)];
-        user.save(function(err, user) {
-          if (err) {
-            sendJSONresponse(res, 404, err);
-          } else {
-            sendJSONresponse(res, 200,user);
-          }
-        });
-      }
-  );
+        else{
+          user.name=req.body.name,
+          //user.setPassword(req.body.password);
+          user.email=req.body.email;
+          user.birthdate=req.body.birthdate;
+          user.address = req.body.address;
+          user.job=req.body.job;
+          user.userStatus =req.body.userStatus;
+          user.profilePhoto=req.body.profilePhoto,
+          user.coverPage=req.body.coverPage,
+          user.gender=req.body.gender,
+          user.url=req.body.url;
+          user.save(function(err, user) {
+            if (err) {
+              sendJSONresponse(res, 404, err);
+            } else {
+              console.log("User Save successfull");
+              sendJSONresponse(res, 200,user);
+            }
+          });
+
+        }
+      });
+  }
+  else{
+    console.log('No userid specified');
+    sendJSONresponse(res, 404, {
+      "message": "No userid in request"
+    });
+  }
 };
 
 /* DELETE /api/locations/:locationid */

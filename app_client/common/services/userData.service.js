@@ -16,9 +16,17 @@
     var getUserDataById = function(userid){
         return $http.get('/api/users/partial/'+userid);
     };
+    var updateUserData = function(data){
+        return $http.post('/api/users/update',data,{
+          headers: {
+                Authorization: 'Bearer '+ authentication.getToken()
+          } 
+        });
+    };
     return {
       getUserData : getUserData,
-      getUserDataById : getUserDataById
+      getUserDataById : getUserDataById,
+      updateUserData : updateUserData
 
     };
   }

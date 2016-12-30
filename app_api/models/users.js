@@ -112,15 +112,20 @@ var userSchema = new mongoose.Schema({
   address:String,
   job:String,
   gender:String,
-  coverPage:String,
-  profilePhoto:String,
+  coverPage:{
+    type:String,
+    "default":"/img/default_cover.jpg"
+  },
+  profilePhoto:{
+    type:String,
+    "default":"/img/default.jpg"
+  },    
   friends:[friendSchema],
   userStatus:{
     type:String,
     required:true,
     "default":"disconnect"
   },
-  
   publications:[publicationSchema],
   url:{type:String},
   coords:{
