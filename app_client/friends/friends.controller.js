@@ -4,11 +4,13 @@
         .controller('friendsCtrl',friendsCtrl);
     friendsCtrl.$inject = ['$http','authentication','userData'];
     function friendsCtrl($http,authentication,userData){
-        var vm = this;
+       alert("hola");
+        /*var vm = this;
         var user;
         vm.friendPhotos=[];
         userData.getUserData({})
             .success(function(data){
+                alert(data.friends.length);
                 user = data;
                 vm.pageHeader = {
                     name:user.name,
@@ -18,6 +20,7 @@
                 };
                 vm.photos=user.photos;
                 vm.friends = user.friends;
+                alert(vm.friends.length);
                 for(var i=0;vm.friends && i<vm.friends.length;i++){
                     userData.getUserDataById(vm.friends[i].userId)
                         .success(function (data) {
@@ -36,6 +39,6 @@
             })
             .error(function(err){
                  alert(err);
-            });
+            });*/
     }
 })();

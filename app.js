@@ -45,6 +45,7 @@ var appClientFiles = [
   'app_client/userlist/userlist.controller.js',
   'app_client/messages/messages.controller.js',
   'app_client/friends/friends.controller.js',
+  'app_client/common/directives/own_profile/widgets/friends/friends.controller.js',
   'app_client/config/editprofile/editprofile.controller.js',
   'app_client/common/directives/own_profile/pageHeader/pageHeader.controller.js',
   'app_client/common/directives/own_profile/timeline/post/post.controller.js',

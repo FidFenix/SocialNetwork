@@ -1,5 +1,5 @@
 (function(){
-  angular.module('socialnetworkApp',['ngRoute','ngSanitize','ui.bootstrap','naif.base64','ngLoad']);
+  angular.module('socialnetworkApp',['ngRoute','ngSanitize','ui.bootstrap','naif.base64']);
 
   function config($routeProvider,$locationProvider){
     $routeProvider
