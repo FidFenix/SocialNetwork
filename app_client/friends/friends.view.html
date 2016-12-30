@@ -1,0 +1,31 @@
+<!--Begin navigation -->
+<navigation></navigation>
+<!--End navigation-->
+
+<!-- Begin page content -->
+<div class="row page-content">
+    <div class="col-md-8 col-md-offset-2">
+        <page-header content='vm.pageHeader'></page-header>
+
+        <div class="row">
+            <div class="col-md-3" ng-repeat='friend in vm.friendPhotos'>
+                <div class="contact-box center-version">
+                    <a href="#">
+                        <img alt="image" class="img-circle" src="{{friend.profilePhoto}}">
+                        <h3 class="m-b-xs"><strong>{{friend.name}}</strong></h3>
+
+                        <div class="font-bold">{{friend.job}}</div>
+                    </a>
+                    <div class="contact-box-footer">
+                        <div class="m-t-xs btn-group">
+                            <a href="messages1.html" class="btn btn-xs btn-white"><i class="fa fa-envelope"></i>Send Messages</a>
+                            <a class="btn btn-xs btn-white"><i class="fa fa-user-plus"></i> Follow</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<chat></chat>
+<footer-generic></footer-generic>

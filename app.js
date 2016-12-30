@@ -40,6 +40,11 @@ var appClientFiles = [
   'app_client/common/directives/own_profile/timeline/postState/postState.directive.js',
   'app_client/index/index.controller.js',
   'app_client/profiles/own_profile/profile.controller.js',
+  'app_client/photos/photos.controller.js',
+  'app_client/about/about.controller.js',
+  'app_client/userlist/userlist.controller.js',
+  'app_client/messages/messages.controller.js',
+  'app_client/friends/friends.controller.js',
   'app_client/config/editprofile/editprofile.controller.js',
   'app_client/common/directives/own_profile/pageHeader/pageHeader.controller.js',
   'app_client/common/directives/own_profile/timeline/post/post.controller.js'

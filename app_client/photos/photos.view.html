@@ -1,0 +1,54 @@
+<!--Begin navigation -->
+<navigation></navigation>
+<!--End navigation-->
+
+<!-- Begin page content -->
+<div class="row page-content">
+    <div class="col-md-8 col-md-offset-2">
+        <page-header content='vm.pageHeader'></page-header>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="grid" class="row">
+                    <div class="mix col-sm-3 page1 page4 margin30" ng-repeat="photo in vm.photos">
+                        <div class="item-img-wrap ">
+                            <img src="{{photo.data}}" class="img-responsive" alt="workimg">
+                            <div class="item-img-overlay">
+                                <a href="#" class="show-image">
+                                    <span></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- grid-->
+            </div>
+        </div>
+        <div class="row gallery-bottom">
+            <div class="col-sm-6">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">«</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">»</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-sm-6 text-right">
+                <em>Displaying 1 to 8 (of 100 photos)</em>
+            </div>
+        </div>
+    </div>
+</div>
+<chat></chat>
+<footer-generic></footer-generic>

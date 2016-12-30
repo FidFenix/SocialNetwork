@@ -6,7 +6,8 @@
         <button type="button" class="btn btn-azure pull-right">Post</button>
         <ul class="nav nav-pills">
             <li><a href="#"><i class="fa fa-map-marker"></i></a></li>
-            <li><a href="#"><i class="fa fa-camera"></i></a></li>
+            <li><a href="#"><i id="camera_photo" class="fa fa-camera"></i></a></li>
+            <input type="file" id=upload_photo ng-model='vm.avatar' ng-change='vm.uploadPhoto()' base-sixty-four-input>
             <li><a href="#"><i class=" fa fa-film"></i></a></li>
             <li><a href="#"><i class="fa fa-microphone"></i></a></li>
         </ul>

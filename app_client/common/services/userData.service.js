@@ -23,10 +23,22 @@
           } 
         });
     };
+    var getUsers = function(data){
+      return $http.get('/api/users');
+    };
+    var addFriend = function(data){
+        return $http.post('/api/users/friend',data,{
+          headers: {
+                Authorization: 'Bearer '+ authentication.getToken()
+          } 
+        });
+    };
     return {
       getUserData : getUserData,
       getUserDataById : getUserDataById,
-      updateUserData : updateUserData
+      updateUserData : updateUserData,
+      getUsers : getUsers,
+      addFriend : addFriend
 
     };
   }
