@@ -15,12 +15,14 @@
                     cover:user.coverPage,
                     profilePhoto:user.profilePhoto
                 };
+
                 vm.about ={
                     birth : user.birthdate,
                     job:user.job,
                     gender:user.gender,
                     address:user.address
                 };
+                alert(vm.about.job);
                 vm.friends = user.friends;
                 vm.timeline = user.publications;
                 return false;

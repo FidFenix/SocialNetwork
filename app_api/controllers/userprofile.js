@@ -209,16 +209,16 @@ module.exports.userProfileUpdateOne = function(req, res) {
           return;
         }
         else{
-          user.name=req.body.name,
+          user.name=req.body.name;
           //user.setPassword(req.body.password);
           user.email=req.body.email;
           user.birthdate=req.body.birthdate;
           user.address = req.body.address;
           user.job=req.body.job;
           user.userStatus =req.body.userStatus;
-          user.profilePhoto=req.body.profilePhoto,
-          user.coverPage=req.body.coverPage,
-          user.gender=req.body.gender,
+          user.profilePhoto=req.body.profilePhoto;
+          user.coverPage=req.body.coverPage;
+          user.gender=req.body.gender;
           user.url=req.body.url;
           user.phone=req.body.phone;
           user.description=req.body.description;

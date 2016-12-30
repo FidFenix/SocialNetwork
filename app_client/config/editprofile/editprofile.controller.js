@@ -23,6 +23,7 @@
         //vm.returnPage = $location.search().page || '/';
         vm.returnPage="/home";
         vm.submitEdit = function () {
+            alert("Enviando");
             userData.updateUserData(vm.user)
                 .success(function(data){
                     $location.path("/profile");
