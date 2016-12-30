@@ -138,6 +138,29 @@ module.exports.userProfilePartialReadOne = function(req, res) {
     });
   }
 };
+
+module.exports.userReadAll = function(req, res) {
+  console.log('Finding all users');
+    Usr
+      .find({})
+      .sort('-name')
+      .select("name birthdate profilePhoto email address job phone")
+      .exec(function(err, user) {
+        if (!user) {
+          sendJSONresponse(res, 404, {
+            "message": "userid not found"
+          });
+          return;
+        } else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }
+        console.log(user);
+        sendJSONresponse(res, 200, user);
+      });
+  
+};
 /* POST a new location */
 /* /api/locations */
 /*module.exports.userProfileCreate = function(req, res) {
@@ -197,6 +220,8 @@ module.exports.userProfileUpdateOne = function(req, res) {
           user.coverPage=req.body.coverPage,
           user.gender=req.body.gender,
           user.url=req.body.url;
+          user.phone=req.body.phone;
+          user.description=req.body.description;
           user.save(function(err, user) {
             if (err) {
               sendJSONresponse(res, 404, err);
@@ -237,6 +262,74 @@ module.exports.userProfileDeleteOne = function(req, res) {
   } else {
     sendJSONresponse(res, 404, {
       "message": "No userid"
+    });
+  }
+};
+//add friend
+module.exports.userAddFriend = function(req, res) {
+  console.log('Finding user details', req.payload.email);
+  if(req.payload.email){
+    Usr
+      .findOne({email:req.payload.email})
+      .select("-photo -publications")
+      .exec(function(err,user){
+        if(!user){
+          sendJSONresponse(res, 404, {
+            "message": "userid not found"
+          });
+          return;
+        }else if (err) {
+          console.log(err);
+          sendJSONresponse(res, 404, err);
+          return;
+        }else if(user._id!=req.payload._id){
+          console.log("error en token");
+          sendJSONresponse(res, 404, {
+            "message": "invalid credentials"
+          });
+          return;
+        }
+        else{
+          if(user._id==req.body.userid)return;
+          for(var i=0;user.friends && i<user.friends.length;i++){
+            if(user.friends[i].userId==req.body.userid)
+              return;
+          }
+          user.friends.push({
+            userId:req.body.userid
+          });
+          user.save(function(err){});
+          Usr
+            .findById(req.body.userid)
+            .select("friends")
+            .exec(function(err, user2) {
+              if (!user2) {
+                sendJSONresponse(res, 404, {
+                  "message": "userid2 not found"
+                });
+                return;
+              } else if (err) {
+                console.log(err);
+                sendJSONresponse(res, 404, err);
+                return;
+              }
+              console.log("AQUIIIII");
+              console.log(user._id);
+              var aux = user._id+"";
+              user2.friends.push({
+                userId:aux
+              });
+             user2.save(function(err){});
+              console.log(user2);
+              sendJSONresponse(res, 200, user2);
+            });
+        }
+      });
+  }
+  else{
+    console.log('No userid specified');
+    sendJSONresponse(res, 404, {
+    "message": "No userid in request"
     });
   }
 };

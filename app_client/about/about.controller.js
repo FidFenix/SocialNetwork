@@ -1,9 +1,9 @@
 (function(){
     angular
         .module('socialnetworkApp')
-        .controller('profileCtrl',profileCtrl);
-    profileCtrl.$inject = ['$http','authentication','userData'];
-    function profileCtrl($http,authentication,userData){
+        .controller('aboutCtrl',aboutCtrl);
+    aboutCtrl.$inject = ['$http','authentication','userData'];
+    function aboutCtrl($http,authentication,userData){
         var vm = this;
         var user;
         userData.getUserData({})
@@ -15,14 +15,18 @@
                     cover:user.coverPage,
                     profilePhoto:user.profilePhoto
                 };
-                vm.about ={
-                    birth : user.birthdate,
+                vm.about={
+                    name:user.name,
+                    email:user.email,
+                    address:user.address,
                     job:user.job,
-                    gender:user.gender,
-                    address:user.address
+                    birthdate:user.birthdate,
+                    phone:user.phone,
+                    description:user.description,
+                    url:user.url
                 };
-                vm.friends = user.friends;
-                vm.timeline = user.publications;
+                vm.photos=user.photos;
+                vm.friend = user.friends;
                 return false;
             })
             .error(function(err){

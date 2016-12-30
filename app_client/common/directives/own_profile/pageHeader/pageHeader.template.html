@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-load="prueba(content.name)">
     <div class="col-md-12">
         <div class="cover profile">
             <div class="wrapper">
@@ -19,12 +19,12 @@
                 <div class="avatar">
                     <img src="{{content.profilePhoto}}" alt="people">
                 </div>
-                <div class="name"><a href="#">{{content.name}}</a></div>
+                <div class="name"><a href="#">{{name}}</a></div>
                 <ul class="cover-nav">
-                    <li class="active"><a href="#profile"><i class="fa fa-fw fa-bars"></i> Timeline</a></li>
-                    <li><a href="#about"><i class="fa fa-fw fa-user"></i> About</a></li>
-                    <li><a href="#friends"><i class="fa fa-fw fa-users"></i> Friends</a></li>
-                    <li><a href="#photos1"><i class="fa fa-fw fa-image"></i> Photos</a></li>
+                    <li class="active"><a href="profile"><i class="fa fa-fw fa-bars"></i> Timeline</a></li>
+                    <li><a href="about"><i class="fa fa-fw fa-user"></i> About</a></li>
+                    <li><a href="friends"><i class="fa fa-fw fa-users"></i> Friends</a></li>
+                    <li><a href="photos"><i class="fa fa-fw fa-image"></i> Photos</a></li>
                 </ul>
             </div>
         </div>

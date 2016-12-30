@@ -108,10 +108,17 @@ var userSchema = new mongoose.Schema({
   hash:String,
   salt:String,
   photos:[photoSchema],
-  birthdate:Date,
+  birthdate:{
+    type:Date
+  },
   address:String,
   job:String,
+  phone:{
+    type:String,
+    "default":"(+54)953-464-991"
+  },
   gender:String,
+  description:String,
   coverPage:{
     type:String,
     "default":"/img/default_cover.jpg"
@@ -127,7 +134,10 @@ var userSchema = new mongoose.Schema({
     "default":"disconnect"
   },
   publications:[publicationSchema],
-  url:{type:String},
+  url:{
+    type:String,
+    "default":"http://socialnetwork.heroku.com"
+  },
   coords:{
     type:[Number],
     index:'2dsphere'
